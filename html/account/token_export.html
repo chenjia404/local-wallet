@@ -219,10 +219,8 @@
                 //转账
 				if(true){
                     amount = amount * math.pow(10,decimals);
-                    var num = amount.toString(16);
-                    num = '0x'+num;
                     showLoading(true);
-                    sendTransaction(transfer_out_address, num);
+                    sendTransaction(transfer_out_address, amount);
 				}else{
                     if(data.error.code == -32000)
                     {

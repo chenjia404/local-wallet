@@ -218,7 +218,7 @@
             rpc("personal_unlockAccount", [my_address, password, 2], function (data) {
                 //转账
 				if(true){
-                    amount = ethers.BigNumber.from(amount).pow(decimals);
+					amount = ethers.FixedNumber.from(amount.toString()) * 10 ** this.decimals;
                     showLoading(true);
                     sendTransaction(transfer_out_address, amount);
 				}else{

@@ -273,7 +273,6 @@
      */
     function addAccount()
     {
-
         if (checkSubmitFlg)
         {
             return false;
@@ -282,9 +281,27 @@
         checkSubmitFlg = true;
         var password = h("#password").val();
         var name = h("#name").val();
-        if(!name){
-            mui.toast('昵称不能为空');
-            return false;
+
+		if(!name){
+			mui.toast('昵称不能为空');
+			mui("#add-account-submit").button('reset');
+			checkSubmitFlg = false;
+			return false;
+		}
+
+		if(!password){
+			mui.toast('密码不能为空');
+			mui("#add-account-submit").button('reset');
+			checkSubmitFlg = false;
+			return false;
+		}
+
+		if (password.length < 6)
+		{
+			mui.toast('密码最少6位');
+			mui("#add-account-submit").button('reset');
+			checkSubmitFlg = false;
+			return false;
 		}
 
         rpc("personal_newAccount",[password],"",name);
